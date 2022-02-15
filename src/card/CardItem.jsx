@@ -1,4 +1,5 @@
 import { FaMoneyBillAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const CardItem = ({ card }) => {
     return (
@@ -10,6 +11,7 @@ const CardItem = ({ card }) => {
                 <FaMoneyBillAlt className='text-3xl text-lime-400 mr-3' />
                 <h3 className="text-gray-400 text-lg text-center font-bold">{card.card_prices[0].cardmarket_price}</h3>
             </div>
+            <Link to={`/card/${card.name}`}><button className='block mx-auto rounded-lg mt-3 py-1 px-3 bg-lime-400 w-28 font-bold text-gray-800 hover:opacity-80 transition duration-200'>Read More</button></Link>
         </div>
     )
 }
