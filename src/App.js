@@ -5,6 +5,7 @@ import SpellcasterCard from "./card/SpellcasterCard";
 import DragonCard from "./card/DragonCard";
 import ZombieCard from "./card/ZombieCard";
 import MachineCard from "./card/MachineCard";
+import Card from "./card/Card";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/dragon" element={<DragonCard />} />
         <Route path="/zombie" element={<ZombieCard />} />
         <Route path="/machine" element={<MachineCard />} />
+        <Route path="/card/:name" element={<Card />} />
       </Routes>
     </>
   )
