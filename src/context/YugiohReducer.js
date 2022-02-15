@@ -10,6 +10,12 @@ const yugiohReducer = (state, action) => {
                 cards: action.payload,
                 loading: false
             }
+        case 'GET_CARD_BY_NAME':
+            return {
+                ...state,
+                card: action.payload,
+                loading: false
+            }
         case 'SET_LOADING':
             return {
                 ...state,
