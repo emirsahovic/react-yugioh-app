@@ -5,10 +5,11 @@ import { GiCardPlay } from 'react-icons/gi';
 import { GoPlus } from 'react-icons/go';
 import { HiMinus } from 'react-icons/hi';
 import { FaLevelUpAlt } from 'react-icons/fa';
+import { MdAttachMoney } from 'react-icons/md';
 
 const Card = () => {
     const params = useParams();
-    const { card, fetchCardByName } = useContext(YugiohContext);
+    const { card, fetchCardByName, imgs, prices } = useContext(YugiohContext);
 
     useEffect(() => {
         fetchCardByName(params.name);
@@ -17,7 +18,7 @@ const Card = () => {
     return (
         <div className="container mx-auto text-white mt-24">
             <div className="grid grid-cols-3 mx-44">
-                <img src={card.card_images[0].image_url} className="w-80 h-5/6 hover:scale-105 transition duration-300" alt="Card" />
+                <img src={imgs.image_url} className="w-80 h-5/6 hover:scale-105 transition duration-300" alt="Card" />
                 <div className="col-span-2">
                     <p className="text-xl text-gray-400">{card.desc}</p>
                     {card.atk ? (
@@ -41,6 +42,21 @@ const Card = () => {
                             <p className="text-xl font-bold">{card.level}</p>
                         </div>
                     ) : null}
+                    <div className="flex items-center my-2 w-full">
+                        <span className="text-xl mr-1 tracking-wider text-gray-300">Card Market Price</span>
+                        <MdAttachMoney className="text-3xl mr-3 text-lime-400" />
+                        <p className="text-xl italic font-bold">{prices.cardmarket_price}</p>
+                    </div>
+                    <div className="flex items-center my-2">
+                        <span className="text-xl mr-1 tracking-wider text-gray-300">Ebay Price</span>
+                        <MdAttachMoney className="text-3xl mr-3 text-lime-400" />
+                        <p className="text-xl italic font-bold">{prices.ebay_price}</p>
+                    </div>
+                    <div className="flex items-center my-2">
+                        <span className="text-xl mr-1 tracking-wider text-gray-300">Amazon Price</span>
+                        <MdAttachMoney className="text-3xl mr-3 text-lime-400" />
+                        <p className="text-xl italic font-bold">{prices.amazon_price}</p>
+                    </div>
                     <div className="flex items-center my-2">
                         <span className="text-xl mr-1 tracking-wider text-gray-300">TYPE</span>
                         <GiCardPlay className="text-3xl mr-3 text-lime-400" />
