@@ -16,6 +16,18 @@ const yugiohReducer = (state, action) => {
                 card: action.payload,
                 loading: false
             }
+        case 'GET_CARD_IMAGE':
+            return {
+                ...state,
+                imgs: action.payload,
+                loading: false
+            }
+        case 'GET_CARD_PRICE':
+            return {
+                ...state,
+                prices: action.payload,
+                loading: false
+            }
         case 'SET_LOADING':
             return {
                 ...state,

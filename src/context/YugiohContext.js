@@ -8,7 +8,9 @@ export const YugiohProvider = ({ children }) => {
     const initialState = {
         cards: [],
         loading: false,
-        card: {}
+        card: {},
+        imgs: {},
+        prices: {}
     }
 
     const [state, dispatch] = useReducer(yugiohReducer, initialState);
@@ -29,11 +31,24 @@ export const YugiohProvider = ({ children }) => {
         const response = await axios(`https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${name}`);
         const { data } = await response.data;
         const [data2] = data;
-        console.log(data2);
+        const { card_images } = data2;
+        const [imgs] = card_images;
+        const { card_prices } = data2;
+        const [prices] = card_prices
 
         dispatch({
             type: 'GET_CARD_BY_NAME',
             payload: data2
+        })
+
+        dispatch({
+            type: 'GET_CARD_IMAGE',
+            payload: imgs
+        })
+
+        dispatch({
+            type: 'GET_CARD_PRICE',
+            payload: prices
         })
     }
 
@@ -84,9 +99,7 @@ export const YugiohProvider = ({ children }) => {
     const setLoading = () => dispatch({ type: 'SET_LOADING' });
 
     return <YugiohContext.Provider value={{
-        cards: state.cards,
-        card: state.card,
-        loading: state.loading,
+        ...state,
         fetchCards,
         fetchCardByName,
         fetchSpellcaster,
